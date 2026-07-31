@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PO. Nuswantoro Holidays & PT. Nusa Garasya Transindo</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #12141a;
+            --bg-card: #1c1f28;
+            --bg-elevated: #262934;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa8c2c;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --border-color: rgba(212, 175, 55, 0.2);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 20, 26, 0.9);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(18, 20, 26, 0.7), rgba(18, 20, 26, 0.9)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            display: inline-block;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Scroll Animation Classes (AOS Style) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Tentang PO & PT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 35px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--gold);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Interactive Accordion / Tombol Interaktif */
+        .interactive-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .interactive-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .interactive-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 25px;
+            text-align: left;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .interactive-btn i {
+            color: var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .interactive-btn:hover {
+            background: rgba(212, 175, 55, 0.05);
+            color: var(--gold);
+        }
+
+        .interactive-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding 0.4s ease;
+            background: var(--bg-elevated);
+            padding: 0 25px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-top: 0px solid var(--border-color);
+        }
+
+        .interactive-item.active .interactive-content {
+            max-height: 300px;
+            padding: 20px 25px;
+            border-top: 1px solid var(--border-color);
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease;
+        }
+
+        .interactive-item.active .interactive-btn i {
+            transform: rotate(180deg);
+        }
+
+        .interactive-item.active {
+            border-color: var(--gold);
+        }
+
+        /* Reservasi Section */
+        .reservation {
+            background: linear-gradient(rgba(28, 31, 40, 0.95), rgba(28, 31, 40, 0.95)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .reservation h2 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .reservation p {
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+            color: var(--text-muted);
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0f14;
+            text-align: center;
+            padding: 30px 8%;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer p span {
+            color: var(--gold);
+        }
+
+        @media (max-width: 992px) {
+            nav ul {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo">NUSWANTORO HOLIDAYS.</div>
+        <nav>
+            <ul>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#pelayanan">Pelayanan</a></li>
+                <li><a href="#partner">Partner</a></li>
+                <li><a href="#syarat">Syarat</a></li>
+                <li><a href="#fasilitas">Fasilitas</a></li>
+                <li><a href="#reservasi">Reservasi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="reveal">PO. NUSWANTORO HOLIDAYS</h1>
+        <p class="reveal">Didukung oleh PT. Nusa Garasya Transindo, menghadirkan perjalanan pariwisata berkelas, aman, dan komunitas member yang solid.</p>
+        <a href="#reservasi" class="btn-gold reveal">Gabung / Reservasi Sekarang</a>
+    </section>
+
+    <!-- Tentang PO & PT -->
+    <section id="tentang" class="reveal">
+        <div class="section-title">
+            <h2>Profil Perusahaan</h2>
+            <p>Mengenal lebih dekat dedikasi dan legalitas layanan kami</p>
+        </div>
+        <div class="about-grid">
+            <div class="card">
+                <h3>PO. Nuswantoro Holidays</h3>
+                <p>Penyedia layanan transportasi darat pariwisata terkemuka yang mengutamakan keselamatan, ketepatan waktu, serta armada bus modern dan prima.</p>
+            </div>
+            <div class="card">
+                <h3>PT. Nusa Garasya Transindo</h3>
+                <p>Induk perusahaan resmi yang menaungi legalitas, manajemen operasional profesional, dan standarisasi mutu tinggi dalam pelayanan pariwisata.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pelayanan (Konsep Tombol Interaktif) -->
+    <section id="pelayanan" style="background: rgba(28, 31, 40, 0.4);" class="reveal">
+        <div class="section-title">
+            <h2>Pelayanan Pariwisata</h2>
+            <p>Klik tombol di bawah untuk melihat detail layanan kami</p>
+        </div>
+        <div class="interactive-container">
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span><i class="fa-solid fa-graduation-cap" style="margin-right: 10px;"></i> Study Tour</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Program edukasi dan wisata sekolah dengan fasilitas serta pengaturan rute perjalanan yang aman dan terpadu.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span><i class="fa-solid fa-kaaba" style="margin-right: 10px;"></i> Ziarah</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Perjalanan wisata religi dan ziarah makam wali/leluhur dengan kenyamanan ekstra dan kru berpengalaman.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span><i class="fa-solid fa-person-hiking" style="margin-right: 10px;"></i> Outbound</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Dukungan transportasi optimal untuk kegiatan luar ruangan, team building, dan rekreasi perusahaan atau instansi.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span><i class="fa-solid fa-people-group" style="margin-right: 10px;"></i> Family Gathering</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Momen kebersamaan keluarga besar, instansi, atau komunitas yang dirancang menyenangkan dan berkesan.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span><i class="fa-solid fa-hands-praying" style="margin-right: 10px;"></i> Kondangan & Rombongan</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Solusi praktis dan nyaman untuk kebutuhan transportasi hajatan, pernikahan, serta rombongan khusus.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span><i class="fa-solid fa-route" style="margin-right: 10px;"></i> Dan Lain-Lain</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Melayani berbagai kebutuhan sewa bus pariwisata lainnya sesuai permintaan dan tujuan perjalanan Anda.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner -->
+    <section id="partner" class="reveal">
+        <div class="section-title">
+            <h2>Partner Resmi</h2>
+            <p>Kolaborasi strategis demi memberikan pengalaman terbaik</p>
+        </div>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;" class="card">
+            <i class="fa-solid fa-handshake" style="color: var(--gold); font-size: 2rem; margin-bottom: 12px;"></i>
+            <h3 style="color: var(--gold); margin-bottom: 8px;">Wirasatya Tour & Travel</h3>
+            <p>Penyedia <strong>Tour Leader</strong> profesional yang siap mendampingi, memandu, dan memastikan setiap agenda perjalanan wisata berjalan lancar dan berkesan.</p>
+        </div>
+    </section>
+
+    <!-- Kenyamanan -->
+    <section id="kenyamanan" style="background: rgba(28, 31, 40, 0.4);" class="reveal">
+        <div class="section-title">
+            <h2>Standar Kenyamanan</h2>
+            <p>Fasilitas penunjang untuk kepuasan perjalanan Anda</p>
+        </div>
+        <div class="interactive-container">
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Full AC</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Suhu kabin sejuk dan merata di setiap sudut armada untuk menjaga kenyamanan sepanjang perjalanan.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Reclining Seat</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Kursi ergonomis yang dapat disesuaikan sandarannya untuk istirahat maksimal di jalan.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Entertainment</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Dilengkapi LED TV, Audio, dan fasilitas Karaoke untuk hiburan seru selama di perjalanan.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Crew Ramah</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Driver dan kru berpengalaman yang selalu mengutamakan keselamatan dan pelayanan terbaik.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Syarat Bergabung (Konsep Tombol Interaktif) -->
+    <section id="syarat" class="reveal">
+        <div class="section-title">
+            <h2>Syarat Bergabung</h2>
+            <p>Ketentuan bagi Anda yang ingin menjadi bagian dari PO Nuswantoro Holidays</p>
+        </div>
+        <div class="interactive-container">
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Tidak Ada Riwayat Galer / Gaje</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Calon member wajib bersih dari rekam jejak masalah, drama, atau perilaku buruk di komunitas lain.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Bisa Jaga Nama Baik PO</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Menjunjung tinggi kehormatan, etika, dan reputasi positif PO Nuswantoro Holidays di manapun berada.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Unit Simple Dan Tidak Jamet</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Menggunakan unit/kendaraan dengan modifikasi yang rapi, elegan, dan proporsional.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Maksimal Usia 13+</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Batasan usia minimal anggota yang bergabung adalah 13 tahun ke atas dengan sikap yang matang.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Tidak Double PO</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Komitmen penuh untuk fokus bergabung dan aktif di satu PO ini saja tanpa merangkap PO lain.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Wajib Saling Bantu Sesama Driver</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Menjunjung tinggi rasa solidaritas, gotong royong, dan kekompakan antar sesama anggota.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Bisa Cinematic / Cine (Opsional)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Kemampuan membuat video sinematik bus menjadi nilai tambah yang baik (bersifat opsional).</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Bisa Screenshot / SS (Opsional)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Terampil mengambil foto/tangkapan layar in-game yang estetis (bersifat opsional).</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Bisa Edit Livery Bus</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Memiliki keahlian dalam merancang dan mengedit tampilan visual livery kendaraan.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Pengalaman di Apk Photo Editor</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Terbiasa menggunakan aplikasi pengeditan foto untuk mendukung kreativitas desain member.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas Member -->
+    <section id="fasilitas" style="background: rgba(28, 31, 40, 0.4);" class="reveal">
+        <div class="section-title">
+            <h2>Fasilitas Member</h2>
+            <p>Klik tombol di bawah untuk melihat benefit eksklusif member</p>
+        </div>
+        <div class="interactive-container">
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Assets PO</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Akses mudah ke berbagai aset pendukung operasional, game, atau konten kreatif Anda.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Stiker & Logo</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Paket stiker dan logo resmi berkualitas tinggi untuk mempercantik tampilan unit Anda.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Kasih Sayang Admin</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Dukungan penuh, bimbingan, serta kehangatan kebersamaan dari tim pengurus/admin.</div>
+            </div>
+            <div class="interactive-item">
+                <button class="interactive-btn" onclick="toggleAccordion(this)">
+                    <span>Dan Lain-Lain</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="interactive-content">Berbagai keuntungan tambahan, ruang silaturahmi, dan keseruan komunitas lainnya.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservasi & Open Member PO -->
+    <section id="reservasi" class="reveal">
+        <div class="reservation">
+            <h2>For Reservasi.</h2>
+            <p>Tertarik bergabung bersama keluarga besar PO. Nuswantoro Holidays? Silakan hubungi kontak di bawah ini.</p>
+            <div class="contact-buttons">
+                <a href="https://chat.whatsapp.com/ELMpOMPu0uTFNGwwpie4yw?s=cl&p=a&ilr=4&amv=1" target="_blank" class="btn-gold"><i class="fa-brands fa-whatsapp"></i> Join Grup WhatsApp</a>
+                <a href="https://wa.me/6287778537350" target="_blank" class="btn-gold"><i class="fa-brands fa-whatsapp"></i> WhatsApp: 0877-7853-7350</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Penutup -->
+    <footer>
+        <p>&copy; 2025 <span>PO. Nuswantoro Holidays</span> & <span>PT. Nusa Garasya Transindo</span>. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript untuk Tombol Interaktif & Animasi Smooth Scroll Reveal -->
+    <script>
+        // Fungsi Accordion
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+            item.classList.toggle('active', !isActive);
+        }
+
+        // Fungsi Animasi Scroll (Reveal on Scroll)
+        window.addEventListener('scroll', revealOnScroll);
+
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            const revealPoint = 150;
+
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Jalankan sekali saat halaman dimuat untuk elemen di atas
+        revealOnScroll();
+    </script>
+
+</body>
+</html>
